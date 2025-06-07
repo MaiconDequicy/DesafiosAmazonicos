@@ -1,17 +1,13 @@
 import React from "react";
 import Footer from "../components/Footer";
+import Header from "../components/Header";
 
 
 function Home({ tw }) {
   return (
     <div>
       {/* Header */}
-      <header className={tw`bg-green-700 text-white flex items-center px-8 py-4 rounded-b-lg shadow-md`}>
-        {/* Ícone menu à esquerda */}
-        <span className={tw`text-2xl cursor-pointer mr-4`}>&#9776;</span>
-        {/* Título centralizado ocupando todo o espaço */}
-        <span className={tw`flex-1 text-4xl font-bold text-center`}>Desafios Amazônicos</span>
-      </header>
+     <Header tw={tw} />
 
       {/* Card principal */}
       <main className={tw`flex flex-col items-center mt-8`}>
