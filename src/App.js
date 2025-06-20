@@ -8,9 +8,10 @@ function App({ tw }) {
     <BrowserRouter>
       <div className={tw`min-h-screen bg-green-100`}>
         <Routes>
-          <Route path="/" element={<Home tw={tw} />} />
+          <Route path="/" element={<Login tw={tw} />} />
           <Route path="/login" element={<Login tw={tw} />} />
           <Route path="/cadastro" element={<Cadastro tw={tw} />} />
+          <Route path="/home" element={<Home tw={tw} />} />
         </Routes>
       </div>
     </BrowserRouter>
