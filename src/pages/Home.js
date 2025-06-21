@@ -1,17 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import RecursosAcessibilidade from "../components/RecursosAcessibilidade";
 import CardQuiz from "../components/CardQuiz";
 import CardModoJogo from "../components/CardModoJogo";
-
+import SideMenu from "../components/SideMenu";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 function Home({ tw }) {
+
+  const [nomeUsuario, setNomeUsuario] = useState("");
+  const [sideMenuOpen, setSideMenuOpen] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setNomeUsuario(user.displayName || user.email);
+      } else {
+        // Se não estiver logado, redireciona para login
+        navigate("/login");
+      }
+    });
+    return () => unsubscribe();
+  }, [navigate]);
+  
+  
+
   return (
     <div>
       {/* Header */}
-     <Header tw={tw} />
+     <Header tw={tw} nomeUsuario={nomeUsuario} onMenuOpen={() => setSideMenuOpen(true)}/>
 
+      {/* SideMenu recebe função para abrir popup */}
+     <SideMenu
+        tw={tw}
+        open={sideMenuOpen}
+        onClose={() => setSideMenuOpen(false)}
+      />
+    
       {/* Card principal */}
       <main className={tw`flex flex-col items-center mt-8`}>
         <div
@@ -82,6 +112,7 @@ function Home({ tw }) {
       </main>
       <RecursosAcessibilidade tw={tw} />
       <Footer tw={tw} ></Footer>
+      
     </div>
   );
 }
