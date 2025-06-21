@@ -1,7 +1,44 @@
-import { Link } from "react-router-dom";
+import {useState} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import "../firebase";
+
+function Login({ tw }) 
+{
+
+  const [form, setForm] = useState({email: "", password: ""});
+  const [erro, setErro] = useState("");
+  const [carregando, setCarregando] = useState(false);
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.id]: e.target.value});
+  };
+
+  const handleSubmit = async (e) => 
+  {
+    e.preventDefault();
+    setErro("");
+    setCarregando(true);
+    
+    const auth = getAuth();
+
+    try
+    {
+      await signInWithEmailAndPassword(auth, form.email, form.password);
+      navigate("/home");
+    }
+    catch (err)
+    {
+      setErro("E-email ou senha inválidos!");
+    }
+    finally
+    {
+      setCarregando(false);
+    }
+  };
 
 
-function Login({ tw }) {
   return (
     <div className={tw`min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 to-green-300`}>
       <div className={tw`bg-white rounded-2xl shadow-xl p-10 w-full max-w-md`}>
@@ -9,7 +46,7 @@ function Login({ tw }) {
         <p className={tw`text-lg text-green-900 mb-8 text-center`}>
           Faça login para acessar os desafios amazônicos.
         </p>
-        <form className={tw`flex flex-col gap-6`}>
+        <form className={tw`flex flex-col gap-6`} onSubmit={handleSubmit}>
           <div>
             <label className={tw`block text-green-800 font-semibold mb-2`} htmlFor="email">
               E-mail
@@ -21,6 +58,8 @@ function Login({ tw }) {
               placeholder="Digite o seu e-mail"
               autoComplete="username"
               required
+              value={form.email}
+              onChange={handleChange}
             />
           </div>
           <div>
@@ -34,13 +73,17 @@ function Login({ tw }) {
               placeholder="Digite sua senha"
               autoComplete="current-password"
               required
+              value={form.password}
+              onChange={handleChange}
             />
           </div>
+            {erro && <div className={tw`text-red-600 text-center`}>{erro}</div>}
           <button
             type="submit"
             className={tw`bg-yellow-400 hover:bg-yellow-500 text-green-900 font-bold py-3 rounded shadow text-lg transition`}
+            disabled={carregando}
           >
-            Entrar
+           {carregando ? "Entrando..." : "Entrar"}
           </button>
 
         </form>
