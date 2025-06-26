@@ -8,6 +8,7 @@ import RecursosAcessibilidade from "../components/RecursosAcessibilidade";
 import SideMenu from "../components/SideMenu";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
+
 function Home({ tw }) {
   const [nomeUsuario, setNomeUsuario] = useState("");
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
@@ -59,7 +60,10 @@ function Home({ tw }) {
             Começar o Desafio
           </button>
         </div>
+
         <RecursosAcessibilidade tw={tw} />
+
+  
       </main>
       <Footer tw={tw} ></Footer>
     </div>
