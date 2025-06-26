@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Cadastro from "./pages/Cadastro";
 import Quizzes from "./pages/quizzes";
+import AdminPage from "./pages/AdminPage";
 
 function App({ tw }) {
   return (
@@ -14,6 +15,7 @@ function App({ tw }) {
           <Route path="/cadastro" element={<Cadastro tw={tw} />} />
           <Route path="/home" element={<Home tw={tw} />} />
           <Route path="/quizzes" element={<Quizzes tw={tw} />} />
+          <Route path="/admin" element={<AdminPage tw={tw} />} />
           <Route path="*" element={<Login tw={tw} />} /> // Redireciona para Login se a rota não existir
         </Routes>
       </div>
