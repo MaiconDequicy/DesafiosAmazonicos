@@ -1,10 +1,20 @@
-import React, { useState } from "react";
-import { getAuth, signOut } from "firebase/auth";
+import React, { useState,  useEffect } from "react";
+import { getAuth, signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 function SideMenu({ tw, open, onClose }) {
   const [showConfirm, setShowConfirm] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
+  const EMAIL_PROFESSORA = "professora@exemplo.com";
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAdmin(user && user.email === EMAIL_PROFESSORA);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleLogout = async () => {
     const auth = getAuth();
@@ -49,6 +59,17 @@ function SideMenu({ tw, open, onClose }) {
             <span className="material-icons-outlined" style={{ fontSize: "2rem" }}>logout</span> Encerrar Sessão
           </button>
         </nav>
+
+        <nav className={tw`flex flex-col gap-8 px-8 py-8 text-xl`}>
+        {/* ...outros links... */}
+        {isAdmin && (
+          <a href="/admin" className={tw`flex items-center gap-4 hover:underline text-xl`}>
+            <span className="material-icons-outlined" style={{ fontSize: "2rem" }}>admin_panel_settings</span>
+            Administração
+          </a>
+        )}
+        {/* ...outros links e botão de logout... */}
+      </nav>
       </div>
 
       {/* Popup de confirmação */}
