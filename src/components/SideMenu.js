@@ -40,16 +40,16 @@ function SideMenu({ tw, open, onClose }) {
           <button onClick={onClose} className={tw`text-3xl`} aria-label="Fechar menu">×</button>
         </div>
         <nav className={tw`flex flex-col gap-8 px-8 py-8 text-xl`}>
-          <a href="/" className={tw`flex items-center gap-4 hover:underline text-xl`}>
+          <a href="/home" className={tw`flex items-center gap-4 hover:underline text-xl`}>
             <span className="material-icons-outlined" style={{ fontSize: "2rem" }}>home</span> Início
           </a>
-          <a href="/acessibilidade" className={tw`flex items-center gap-4 hover:underline text-xl`}>
+          <a href="/home" className={tw`flex items-center gap-4 hover:underline text-xl`}>
             <span className="material-icons-outlined" style={{ fontSize: "2rem" }}>accessible</span> Acessibilidade
           </a>
-          <a href="/sobre" className={tw`flex items-center gap-4 hover:underline text-xl`}>
+          <a href="/home" className={tw`flex items-center gap-4 hover:underline text-xl`}>
             <span className="material-icons-outlined" style={{ fontSize: "2rem" }}>info</span> Sobre o Projeto
           </a>
-          <a href="/creditos" className={tw`flex items-center gap-4 hover:underline text-xl`}>
+          <a href="/home" className={tw`flex items-center gap-4 hover:underline text-xl`}>
             <span className="material-icons-outlined" style={{ fontSize: "2rem" }}>groups</span> Créditos dos Colaboradores
           </a>
           <button
