@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import RecursosAcessibilidade from "../components/RecursosAcessibilidade";
-// import CardQuiz from "../components/CardQuiz"; // Removido
-// import CardModoJogo from "../components/CardModoJogo"; // Removido
 import SideMenu from "../components/SideMenu";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
