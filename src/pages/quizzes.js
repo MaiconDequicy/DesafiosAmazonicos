@@ -16,11 +16,11 @@ function Quizzes({ tw }) {
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setNomeUsuario(user.displayName || user.email);
-        getVisibleQuizzes().then(setQuizzes);
-      } else {
+      if (!user) {
         navigate("/login");
+      } else {
+        setNomeUsuario(user.displayName || user.email); 
+        getVisibleQuizzes().then(setQuizzes);
       }
     });
     return () => unsubscribe();
@@ -55,7 +55,7 @@ function Quizzes({ tw }) {
               title={quiz.title}
               description={quiz.description}
               questions={quiz.questions.length}
-              onStart={() => {}}
+              onStart={() => navigate(`/quiz/${quiz.id}`)}
             />
           ))}
         </div>
