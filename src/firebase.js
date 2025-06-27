@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore"; // Adicione esta linha
+import { getFirestore } from "firebase/firestore";
+import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth"; // Adicione isso
 
 const firebaseConfig = {
   apiKey: "AIzaSyCWBbf016WqjK32LWsxuHxx0e6P5QvWcyI",
@@ -14,6 +15,10 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-const db = getFirestore(app); // Adicione esta linha
+const db = getFirestore(app);
 
-export { db, app };
+// Configura a persistência da sessão do Auth
+const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence);
+
+export { db, app, auth };
