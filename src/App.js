@@ -20,7 +20,7 @@ function App({ tw }) {
           <Route path="/quiz/:quizId" element={<QuizPage tw={tw} />} /> {/* Nova rota para QuizPage */}
           <Route path="/admin" element={<AdminPage tw={tw} />} />
           <Route path="/ranking" element={<Ranking tw={tw} />}></Route>
-          <Route path="*" element={<Login tw={tw} />} /> // Redireciona para Login se a rota não existir
+          <Route path="*" element={<Login tw={tw} />} /> {/* Redireciona para Login se a rota não existir */}
         </Routes>
       </div>
     </BrowserRouter>

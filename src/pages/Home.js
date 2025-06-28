@@ -4,13 +4,12 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import RecursosAcessibilidade from "../components/RecursosAcessibilidade";
 import SideMenu from "../components/SideMenu";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 
 function Home({ tw }) {
   const [nomeUsuario, setNomeUsuario] = useState("");
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
-  const [showConfirm, setShowConfirm] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
