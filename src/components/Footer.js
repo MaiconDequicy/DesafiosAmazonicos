@@ -39,8 +39,18 @@ function Footer({ tw }) {
       <div className={tw`flex flex-col md:flex-row justify-between items-center text-sm text-green-200`}>
         <span>© 2025 Desafios Amazônicos. Todos os direitos reservados.</span>
         <div>
-          <a href="javascript:void(0)" className={tw`hover:underline mr-4`}>Política de Privacidade</a>
-          <a href="javascript:void(0)" className={tw`hover:underline`}>Termos de Uso</a>
+          <button
+            type="button"
+            className={tw`hover:underline mr-4 bg-transparent border-none cursor-pointer p-0`}
+          >
+            Política de Privacidade
+          </button>
+          <button
+            type="button"
+            className={tw`hover:underline bg-transparent border-none cursor-pointer p-0`}
+          >
+            Termos de Uso
+          </button>
         </div>
       </div>
     </footer>
